@@ -16,7 +16,7 @@
   e.g. JDBC 트랜잭션 처리와 JPA 트랜잭션 처리가 (코드가) 상이하다 -> 코드를 변경해야한다
 - 스프링 트랜잭션 추상화를 통해 데이터 접근 기술들을 동일한 방식으로 사용할 수 있다
 - 스프링은 `PlatformTransactionManager` 인터페이스를 제공
-  ![Alt text](image.png)
+  ![Alt text](images/image.png)
 - 서비스는 인터페이스에 의존하고 구현체를 쉽게 갈아끼울 수 있다
 - 스프링에서 이미 각 데이터접근기술에 대한 트랜잭션매니저 구현체도 제공해준다
 - **스프링부트**는 데이터접근기술을 인식해서 적절한 트랜잭션 매니저를 스프링 빈으로 등록해준다
@@ -38,7 +38,7 @@
 
 #### 전체과정
 
-![Alt text](image-1.png)
+![Alt text](images/image-1.png)
 
 1. 클라이언트의 프록시 호출
 2. 스프링 컨테이너를 통해 트랜잭션 매니저 획득
@@ -76,15 +76,15 @@
 ### 프록시 내부 호출
 
 - internal() 호출
-  ![Alt text](image-3.png)
+  ![Alt text](images/image-3.png)
 - external() 호출
-  ![Alt text](image-4.png)
+  ![Alt text](images/image-4.png)
 
 #### 문제원인
 
 - 클래스 내부의 메서드를 호출할 때 `this.internal()` 이 되는데 여기서 `this`는 프록시 객체가 아닌 실제 대상 객체(`target`) 가 된다.
 
-![Alt text](image-5.png)
+![Alt text](images/image-5.png)
 
 ---
 
@@ -150,7 +150,7 @@
 
 #### 물리 트랜잭션, 논리 트랜잭션
 
-![Alt text](image-6.png)
+![Alt text](images/image-6.png)
 
 원칙
 
@@ -159,8 +159,8 @@
 - 내부 트랜잭션은 직접 물리 트랜잭션에 관여하지 않는다
   - 외부트랜잭션에서 시작한 물리트랜잭션의 범위가 내부트랜잭션까지 사용된다
 
-![Alt text](image-7.png)
-![Alt text](image-8.png)
+![Alt text](images/image-7.png)
+![Alt text](images/image-8.png)
 
 ---
 
@@ -168,23 +168,23 @@
 
 - 내부트랜잭션은 커밋되었는데, 외부트랜잭션이 롤백되는 상황
 
-![Alt text](image-9.png)
+![Alt text](images/image-9.png)
 
 - 논리 트랜잭션이 하나라도 롤백되면 전체 물리트랜잭션은 롤백된다
 
-![Alt text](image-10.png)
+![Alt text](images/image-10.png)
 
 #### 내부 롤백
 
 - 트랜잭션 매니저는 신규 트랜잭션 여부에 따라 커밋이 다르게 동작한다
   - 신규 트랜잭션이 아니면 커밋을 해도 (물리트랜잭션에) 커밋이 호출되지 않는다
 
-![Alt text](image-11.png)
+![Alt text](images/image-11.png)
 
 - 어떻게 전체 롤백을 시킬까?
   - 내부 트랜잭션은 트랜잭션 동기화 매니저에 `rollbackOnly=true` 표시를 한다
 
-![Alt text](image-12.png)
+![Alt text](images/image-12.png)
 
 - 개발자는 커밋을 시도했지만, 롤백이 발생했다는걸 알려주기 위해 `UnexpectedRollbackException` 발생한다
 
@@ -203,9 +203,9 @@
   - 커밋과 롤백 각각 별도로 이루어진다
   - 내부 트랜잭션을 시작할 때 `REQUIRES_NEW` 옵션을 사용하면 된다
 
-![Alt text](image-13.png)
+![Alt text](images/image-13.png)
 
-![Alt text](image-14.png)
+![Alt text](images/image-14.png)
 
 - `REQUIRES_NEW` 를 사용하면 데이터베이스 커넥션이 동시에 2개 사용된다
 
@@ -232,7 +232,7 @@
 
 ##### 트랜잭션 전파 - 커밋
 
-![Alt text](image-15.png)
+![Alt text](images/image-15.png)
 
 ##### 정리
 
@@ -242,7 +242,7 @@
 
 ---
 
-![Alt text](image-16.png)
+![Alt text](images/image-16.png)
 
 - `REQUIRES_NEW` 를 사용하지 않고 전파복구 예)
 - 이 예시는 결괒거으로 동시에 2개의 커넥션을 사용하지 않고 순차적으로 사용하고 반환한다
