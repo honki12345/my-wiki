@@ -99,7 +99,7 @@
 
 ## 전송계층
 
-- 프로세스(프로그램) 대 프로세스 전달에 대한 책임  
+- 프로세스(프로그램) 대 프로세스 전달에 대한 책임
   - 포트주소 지정
 - 분할과 재조립(Segmentation and reassembly)
   - 전달 가능한 세그먼트 단위로 나눔
@@ -112,8 +112,6 @@
 - UDP(User Datagram Protocol): 비연결형 서비스, 데이터그램방식
 - SCTP(Stream Control Transmission Protocol): TCP, UDP 특성 결합
 
-![Alt text](images/image-11.png)
-
 - 세그먼트 단위로 나누어졌다가 종단에서 합쳐진다
 
 ### 전송층에서의 전달
@@ -124,27 +122,21 @@
 
 - 예시
 
-![Alt text](images/image-13.png)
-
 - Transport layer: 포트, Network layer: IP, Data link layer: MAC
 
 ## 각 계층과 프로토콜의 비교
-
-![Alt text](images/image-14.png)
 
 - physical, data-link, transport --> OS
 - application, presentation, session --> APP
 
 ## 애플리케이션 프로토콜
 
-![Alt text](images/image-15.png)
-
 ## 정리
 
 - 네트워크란 무엇인가?
   - 범위로 구분: LAN, WAN, INTERNET
-- 통신을 위해서는 규약(protocol)이 필요하다  
-  - OSI 7 Layer, TCP/IP Stack  
+- 통신을 위해서는 규약(protocol)이 필요하다
+  - OSI 7 Layer, TCP/IP Stack
 - 물리계층: 전기적 신호를 인코딩, 디코딩을 통해 컴퓨터에서 받아들인다
 - 데이터링크: 물리주소(MAC), 노드 대 노드 책임, 프레임(단위)
 - 네트워크계층: 논리(IP) 주소, 발신지-대-목적지 책임, 패킷(단위)
