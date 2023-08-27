@@ -117,3 +117,12 @@
 - 각 단계에는 각각의 큐가 있습니다
 
 ![Alt text](images/image-15.png)
+
+## callback queue
+
+- 비동기 처리가 끝난 후 실행되어야할 콜백함수가 차례로 할당된다
+- event loop: queue에 할당된 함수를 순서에 맞춰 call stack에 할당해준다
+
+## callback Queue와 이벤트루프
+
+![Alt text](images/image-16.png)
