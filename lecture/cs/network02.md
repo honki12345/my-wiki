@@ -21,3 +21,8 @@
 
 ![Alt text](images/image-24.png)
 ![Alt text](images/image-25.png)
+
+## 칩의 레지스터
+
+- 레지스터: 칩의 공간. 제어 목적으로 저장 목적으로 나누어져있다.
+- 기본 주소(base address)에 0x000A(ADD_PORT) 를 더해서 결정된다
