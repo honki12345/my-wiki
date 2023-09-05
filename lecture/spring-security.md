@@ -72,3 +72,23 @@
 
 - Form 데이터로 username, password 기반의 인증을 담당하는 필터
   ![Alt text](images/image-21.png)
+
+## CsrfFilter
+
+- CsrfFilter는 Csrf Token을 사용하여 위조된 페이지의 악의적인 공격을 방어한다
+  - CsrfAttack:가짜 홈페이지에 접속하여 본 홈페이지에 악의적인 요청을 하게끔 하는것
+  - 예방법: 위조된 페이지인지 송금시스템에서 제공하는 올바른 페이지인지 구분하면 된다 -> CSRF 토큰을 통해서 가능하다 -> 우리가 만든 페이지에서 송금을 요청하면 csrf토큰을 함께 송신
+  - Thymeleaf 에서는 페이지를 만들 때 자동으로 Csrf Token을 넣어준다
+  `<input type="hidden" name="_csrf" value=""/>`
+![Alt text](images/image-22.png)
+
+## RememberMeAuthenticationFilter
+
+- RememberMeAuthenticationFilter는 일반적인 세션보다 훨씬 오랫동안 로그인 사실을 기억할 수 있도록 해준다
+  - 사용법: `<input type:"checkbox" id="remember-me" name="remember-me" class="" autocomplete="">`
+- 장시간 남아있는 RememberMe 쿠키를 사용하여 세션을 다시 연결시켜준다
+
+## AnonymousAuthenticationFilter
+
+- 인증이 안된 유저가 요청을 하면 Anonymous유저로 만들어 Authentication에 넣어주는 필터
+  - 다른 필터에서 Anonymous유저인지 정상적으로 인증된 유저인지 분기처리 할 수 있다
