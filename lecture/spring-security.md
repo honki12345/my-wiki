@@ -79,8 +79,8 @@
   - CsrfAttack:가짜 홈페이지에 접속하여 본 홈페이지에 악의적인 요청을 하게끔 하는것
   - 예방법: 위조된 페이지인지 송금시스템에서 제공하는 올바른 페이지인지 구분하면 된다 -> CSRF 토큰을 통해서 가능하다 -> 우리가 만든 페이지에서 송금을 요청하면 csrf토큰을 함께 송신
   - Thymeleaf 에서는 페이지를 만들 때 자동으로 Csrf Token을 넣어준다
-  `<input type="hidden" name="_csrf" value=""/>`
-![Alt text](images/image-22.png)
+    `<input type="hidden" name="_csrf" value=""/>`
+    ![Alt text](images/image-22.png)
 
 ## RememberMeAuthenticationFilter
 
@@ -92,3 +92,77 @@
 
 - 인증이 안된 유저가 요청을 하면 Anonymous유저로 만들어 Authentication에 넣어주는 필터
   - 다른 필터에서 Anonymous유저인지 정상적으로 인증된 유저인지 분기처리 할 수 있다
+
+## FilterSecurityInterceptor
+
+- 넘어온 authentication 의 내용을 기반으로 최종 인가 판단을 내린다
+- 인증(Authentication)을 가져오고 만약에 인증에 문제가 있다면 Authentication Exception 을 발생시킵니다. 인증에 문제가 없다면 해당 인증으로 인가를 판단합니다. 인가가 거절되면 AccessDeniedException 을 발생합니다.
+
+## ExceptionTranslationFilter
+
+- FilterSecurityInterceptor에서 발생할 수 있는 두 가지 Exception 을 처리해주는 필터
+  1. AuthenticationException: 인증에 실패할 때 발생
+  2. AccessDeniedException: 인가에 실패할 때 발생
+     즉, 인증이나 인가에 실패했을 때 어떤 행동을 취해야하는지를 결정해주는 Filter입니다.
+
+## Spring Security Config 설정
+
+- 필터 Off
+  - e.g. `http.httpBasic().disable()`
+- 로그인&로그아웃 페이지 관련기능
+
+  ```java
+  http.formLogin()
+      .loginPage("/login")
+      .defaultSuccessUrl("/")
+      .permitAll();
+  ```
+
+  - 폼 로그인의 로그인 페이지를 지정하고 로그인에 성공했을 때 이동하는 URL을 지정
+
+  ```java
+  http.logout()
+      .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+      .logoutSuccessUrl("/")
+  ```
+
+  - 로그아웃 URL을 지정하고 로그아웃에 성공했을 때 이동하는 URL을 지정합니다.
+
+- Url Matchers
+  - antMatchers, mvcMatchers, regexMatchers, requestMatchers
+- 인가관련 설정: 경로별로 권한을 설정한다
+
+  - authorizeRequests(): 인증/인가설정을 시작합니다
+  - hasRole(): 권한을 검증합니다
+
+    ```java
+    http.authorizeRequests()
+        .antMatchers(HttpMethod.POST, "/notice").hasRole("ADMIN")
+    ```
+
+    - ROLE*ADMIN에서 `ROLE*`은 생략가능
+
+  - authenticated(): 인증이 되었는지를 검증합니다
+
+    ```java
+    http.authorizeRequests()
+        .anyRequest().authenticated()
+    ```
+
+  - permitAll()
+
+- Ignoring
+
+  - 특정 리소스에 대해 SpringSecurity 자체를 적용하고 싶지 않을 때 사용
+  - permitAll과 다르게 아예 SpringSecurity 대상에 포함되지 않음 (필터의 대상이 되지 않음 -> 성능 최적화)
+
+  ```java
+  @Override
+  public void configure(WebSecurity web) {
+    // 정적 리소스 spring security 대상에서 제외
+    web.ignoring().antMatchers("/images/**", "/css/**");
+    web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+  }
+  ```
+
+  - css, javascript, images, web jars, favicon
