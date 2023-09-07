@@ -176,13 +176,121 @@
 ## `@WithMockUser`
 
 - MockUser를 생성하고 Authentication을 만듭니다
+
   - User는 org.springframework.security.core.userdetails.User입니다
+    - 개발자의 User와 Cast 오류발생가능
 
-  |멤버변수|예시|설명|
-  |---|---|---|
-  |roles|USER|권한(ROLE_은 자동으로 붙음)|
-  |authorities|ROLE_USER|권한(사용하면 roles를 무시함)|
-  |username|user123|유저명|
-  |password|password123|패스워드|
-  setupBefore|TestExecutionEvent.TEST_METHOD, TestExecutionEvent.TEST_EXECUTION|언제 유저가 세팅되는지 정함|
+  | 멤버변수    | 예시                                                              | 설명                          |
+  | ----------- | ----------------------------------------------------------------- | ----------------------------- |
+  | roles       | USER                                                              | 권한(ROLE\_은 자동으로 붙음)  |
+  | authorities | ROLE_USER                                                         | 권한(사용하면 roles를 무시함) |
+  | username    | user123                                                           | 유저명                        |
+  | password    | password123                                                       | 패스워드                      |
+  | setupBefore | TestExecutionEvent.TEST_METHOD, TestExecutionEvent.TEST_EXECUTION | 언제 유저가 세팅되는지 정함   |
 
+## `@WithUserDetails`
+
+- `WithMockUser`와 마찬가지로 MockUser를 생성하고 Authentication을 만듭니다
+  - `WithMockUser`와 다른 점은 가짜 user를 가져올 때 UserDetailsService의 Bean을 지정해줄 수 있습니다.
+
+## `@WithAnonymousUser`
+
+- 익명유저를 Authentication에서 사용합니다
+
+## `@WithSecurityContext`
+
+- SecurityContext를 만들어 주입
+
+## `with(user())`
+
+- `MockMvc`에 User를 직접 주입
+
+## CustomFilter 만들기
+
+- 커스텀 필터를 구현하기 위해서는 다른 필터와 마찬가지로 Filter Interface를 구현해야합니다
+  - Filter Interface를 구현하면 중복 실행 문제가 있으므로 OncePerRequestFilter를 구현합니다
+
+## 세션의 장단점
+
+- 장점
+  - JSESSIONID는 유의미한 값이 아니라 서버에서 세션(사용자)정보를 찾는 Key로만 활용된다
+- 단점
+  - 서버에 세션(사용자)정보를 저장할 공간이 필요하다
+  - 분산 서버에서 세션을 공유하기 어렵다
+
+![Alt text](images/image-23.png)
+
+## 토큰 인증방식
+
+- 유저가 로그인을 하면 서버에서는 토큰을 생성한 뒤 (사용자 정보를) 저장하지 않고 (stateless) 토큰값을 보내줍니다
+- 서버에서는 이 토큰을 (사용자정보) 의미 값으로 해석하고 그 값을 토대로 유저를 인증합니다
+- 장점
+  - 세션 관리를 할 필요가 없어 별도의 저장소가 필요하지 않다
+  - 서버 분산 & 클러스터 환경에 좋다
+- 단점
+  - 한번 제공된 토큰은 회수가 어렵다 -> 유효기간을 짧게 관리
+  - 토큰에는 유저 정보가 있어 안정성이 우려된다 -> 민감 정보를 포함시켜서는 안된다
+
+## JWT의 구조
+
+- Json Web Token
+- HEADER`.`PAYLOAD`.`SIGNATURE
+
+## JWT-Header
+
+- HEADER는 JWT를 검증하는데 필요한 정보를 가진 객체
+  - Signature에 사용한 암호화 알고리즘이 무엇인지, Key의 ID가 무엇인지 정보를 담고 있다
+  - 이 정보를 Json으로 변환해서 UTF-8로 인코딩한 뒤 Base64 URL-Safe로 인코딩한 값이 들어있습니다 (암호화하지 않았다)
+
+![Alt text](images/image-24.png)
+
+## JWT-Payload
+
+- Payload에는 실질적으로 인증에 필요한 데이터가 저장되어 있다
+  - 데이터의 각각 필드들을 Claim이라고 한다
+  - 대부분의 경우 Claim에 username, 토큰발행시간(iat), 토큰만료시간(exp)를 포함한다. (민감정보를 포함시켜서는 안된다)
+- Payload는 Json으로 바꾼뒤 UTF8로 인코딩하고 Base64로 변경한 데이터이다 (Header와 마찬가지로 암호화하지 않았다.)
+
+![Alt text](images/image-25.png)
+
+## JWT-Signature
+
+- Signature는 토큰 자체의 진위여부를 판단하는 용도로 사용된다
+- Header와 Payload를 합친 뒤 비밀키로 Hash를 생성하여 암호화한다
+
+![Alt text](images/image-26.png)
+
+## JWT-Key Rolling
+
+- SecretKey를 여러 개를 사용하고 수시로 추가하고 삭제해줘서 변경한다면 SecretKey 중에 1개가 노출되어도 다른 Secret Key와 데이터는 안전한 상태가 된다. 이를 Key Rolling이라고 합니다
+- Secret Key 1개에 KeyId를 연결시켜 둡니다. JWT토큰 헤더에 kid를 포함하여 제공하고 서버에서 토큰을 해석할 때 kid로 Secret Key를 찾아서 Signature를 검증합니다
+
+## JWT Util 만들기
+
+- 의존성 추가
+
+```java
+//jjwt
+implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+```
+
+- JwtKey
+  - JWT Secret Key 를 관리하고 제공합니다
+  - Key Rolling을 지원합니다
+- JwtUtils
+  - JWT 토큰을 생성하거나 Parsing하는 메소드를 제공합니다
+- SigningKeyResolver
+
+  - SingningKeyAdapter 를속상속
+  - JWT의 헤더에서 kid를 찾아서 Key(SecretKey + 알고리즘)을 찾아옵니다
+    -Signature를 검증할 때 사용합니다
+
+- JWT Filter - JwtAuthorizationFilter
+
+1. Cookie에서 JWT Token을 구합니다
+2. JWT Token을 파싱하여 username을 구합니다
+3. username으로 User를 구하고 Authentication을 생성합니다
+4. 생성된 Authentication을 SecurityContext에 넣습니다
+5. Exception이 발생하면 응답의 쿠키를 null로 변경합니다
