@@ -166,3 +166,23 @@
   ```
 
   - css, javascript, images, web jars, favicon
+
+## 스프링 시큐리티 테스트
+
+- 인증을 받지 않은 상태로 테스트를 하면 SpringSecurity에서 요청자체를 막기 때문에 테스트가 제대로 동작조차 하지 못한다
+  - 따라서 이런 문제는 프로젝트에 spring-security-test를 사용해서 해결할 수 있습니다
+  - spring-security-test를 사용하면 테스트 직전에 Mock User를 인증시켜놓고 테스트를 구동할 수 있습니다
+
+## `@WithMockUser`
+
+- MockUser를 생성하고 Authentication을 만듭니다
+  - User는 org.springframework.security.core.userdetails.User입니다
+
+  |멤버변수|예시|설명|
+  |---|---|---|
+  |roles|USER|권한(ROLE_은 자동으로 붙음)|
+  |authorities|ROLE_USER|권한(사용하면 roles를 무시함)|
+  |username|user123|유저명|
+  |password|password123|패스워드|
+  setupBefore|TestExecutionEvent.TEST_METHOD, TestExecutionEvent.TEST_EXECUTION|언제 유저가 세팅되는지 정함|
+
