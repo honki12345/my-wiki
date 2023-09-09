@@ -168,3 +168,53 @@
 ## Live Server
 
 - Live Server는 개발을 위해 임시로 로컬 서버를 오픈하는 것입니다. 제품(Product)는 실제 호스팅 서버에(사용자들이 접근가능한) 업로드 해야합니다.
+
+## `<!DOCTYPE html>`
+
+- 문서(페이지)의 HTML **버전**을 지정
+- DOCTYPE(DTD, Document Type Definition)은 마크업 언어에서 문서 형식을 정의하며, 웹 브라우저가 어떤 HTML **버전**의 해석방식으로 페이지를 이해하면 되는지를 (브라우저에게) 알려주는 용도
+- `<!DOCTYPE html PUBLIC "-//W3C//DTD(..)`: XHTML
+
+## `<html>`
+
+- 문서의 **전체범위**: HTML 문서가 어디에서 시작하고, 어디에서 끝나는지 알려주는 역할
+
+## `<head>`
+
+- 문서의 **정보**를 나타내는 범위
+  - 웹 브라우저가 해석할 웹 페이지의 제목, 설명, 사용할 파일위치, 스타일(CSS) 같은 웹페이지의 **보이지 않는 정보**를 작성하는 범위
+
+## `<body>`
+
+- 문서의 **구조**를 나타내는 범위
+  - 사용자 화면을 통해 보여지는 로고, 헤더, 푸터, 내비게이션, 메뉴, 버튼, 이미지 같은 웹페이지의 **보여지는 구조**를 작성하는 범위
+
+## lang
+
+- HTML가 동작하는 환경의 언어(language)를 지정해준다
+
+## `<link>`
+
+- 외부 문서를 가져와 연결할 때 사용 (대부분 CSS 파일)
+- `rel`(relationship) 속성: 가져올 문서와의 관계
+- `href`(Hyper Text Reference) 속성: 가져올 문서의 경로
+
+## favicon(Favorite Icon)
+
+- HTML Favicon을 적용할 때는 이름을 favicon으로 하길 권장하며  
+  주로, favicon.ico 또는 favicon.png로 사용된다
+
+## `<meta>`
+
+- `<meta>`는 HTML 문서의 제작자, 내용, 키워드 같은 여러 **정보**를 검색엔진이나 브라우저에게 제공
+  - `charset`속성: (Character set)문자인코딩 방식
+  - `name`속성: 정보의 종류, `content`: 정보의 값  
+    e.g. `<meta name="author" content="HEROPY"/>` 제작자
+  - `name="viewport"`: **모바일에서** 웹 페이지의 가로 너비를 모바일 환경의 가로 너비와 일치시키거나,(`width=device-width`) 웹 사이트가 처음 출력될 때 확대/축소 여부나 정도(`initial-scale=1.0`)를 결정하겠다는 것 같은 정보를 명시
+- 문자인코딩(Encoding)이란 문자나 기호들을 컴퓨터가 이용할 수 있는 (바이너리)신호로 만드는 것을 의미한다.
+
+## 경로
+
+![Alt text](images/image-34.png)
+
+- `./images/heropy.png` 또는 `images/heropy.png`
