@@ -487,3 +487,25 @@
 - HTML 속성(Attributes)
 - CSS 속성(Properties)
 - JS 속성(Properties)
+
+### 속성에 기본값이 있는지 확인해라
+
+## 박스모델-width, height
+
+- width, height: 요소의 가로/세로 너비
+  - 기본값(auto): 브라우저가 (block인지 inline인지에 따라)너비를 계산
+  - 단위: px, em, vw
+- `<span>`-auto: 포함한 콘텐츠 크기만큼 자동으로 줄어듬
+- `<div>`-auto: width: 부모요소의 크기만큼 자동으로 늘어남, height: 포함한 콘텐츠 크기만큼 자동으로 줄어듬
+
+## 박스모델-max-width, max-height
+
+- 요소가 커질 수 있는 최대 가로/세로 너비
+  - 기본값(none): 제한없음
+  - 단위: px, em, vw
+
+## 박스모델min-width, min-height
+
+- 요소가 작아질 수 있는 최소 가로/세로 너비
+  - 기본값(0): 제한없음
+  - 단위: px, em, vw
