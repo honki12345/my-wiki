@@ -94,3 +94,61 @@
 - TCP(transport layer): segment
 - IP(network layer): datagram
 - Ethernet(datalink layer): frame
+
+## TCP 구조-제어를 위한 코드 비트
+
+![Alt text](images/image-35.png)
+
+## TCP 플래그
+
+![Alt text](images/image-36.png)
+
+## 3-way handshake: TCP의 연결확정과정
+
+1. 클라이언트가 서버로 SYN(Synchronize)신호보냄
+2. 서버가 응답으로 SYN, ACK 신호를 보낸다
+3. SYN, ACK를 정상 수신하면 응답으로 다시 ACK를 보낸다
+
+## TCP 상태 천이도 다이어그램
+
+![Alt text](images/image-37.png)
+
+## 소켓 프로그래밍 연결 시나리오
+
+![Alt text](images/image-38.png)
+
+- SERVER
+  - socket(): 명시적 연결설정(e.g. 인터넷 프로토콜과 데이터그램으로 연결)
+  - bind(): 소켓을 시스템에 부착한다. 소켓은 이때부터 외부로투어의 연결점을 가진다(param. 주소와 주소길이)
+  - listen(): 외부로부터 TCP연결을 받아들일 수 있도록 접속 연결 큐를 만들고 대기한다(param. 큐의 크기 결정)
+  - accept(): 클라이언트의 요청을 받아들인다  
+    하나의 요청처리시 대기현상을 없애기 위해서 fork()함수 이용
+  - read(): 서버의 패킷 데이터 읽어오기
+  - write(): 데이터보내기
+
+## Socket의 옵션
+
+![Alt text](images/image-40.png)
+
+- AF_UNIX: 로컬
+- AF_INET: (이기종통신) 인터넷
+- AF_NS: 프로세스간 통신
+
+## 흐름제어
+
+- 목적지로부터 확인 응답을 받기 전에 발신지가 송신할 수 있는 데이터의 양을 정의
+- TCP는 응용프로그램으로부터 전달된 데이터 버퍼에 부여돼 송신할 준비가 되어 있는 윈도우를 정의
+- TCP는 슬라이딩 윈도우 프로토콜에 정의된 최대한 많은 양의 데이터를 송신
+
+## Sliding window
+
+- 송신 측의 슬라이딩 윈도우는 데이터프레임이 보내지면 왼쪽으로 줄어든다
+- 송신 측의 슬라이딩 윈도우는 확인응답 ACK를 받으면 오른쪽으로 확장한다
+
+## 오류제어
+
+- 손상된 세그먼트, 유실된 세그먼트, 순서가 어긋난 세그먼트, 중복된 세그먼트들을 찾아내기 위한 기법을 포함
+- 사용도구
+  - Checksum
+  - 확인응답
+  - time-out
