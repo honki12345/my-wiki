@@ -63,3 +63,34 @@
   - IPv6 패킷을 IPv4 패킷으로 캡슐화하여 전달한다.
 
 ![Alt text](images/image-34.png)
+
+## 프로세스 간 전달
+
+- Data link layer: Nodo-to-Node
+- Network layer: Host-to-Host
+- Transport layer: Process-to-Process
+
+## 소켓 주소
+
+- IP주소와 포트번호의 조합
+
+## 포트
+
+- TCP나 UDP를 사용할 때의 상호간의 이동통로
+- 클라이언트는 서버와 접속할 때 (임시) 포트번호를 할당받아 사용
+- server
+  - bind()을 통해 자신의 port 번호를 명시함
+  - port 번호를 `0`으로 지정한 경우 시스템에서 임의의 포트 번호를 할당
+- client
+  - connect() 시에 임의의 포트번호를 할당받는다
+
+## 바이트와 세그먼트
+
+- 세그먼트: 다수의 바이트를 묶어서 그룹화
+  - 세그먼트에 헤더를 붙이고 IP계층으로 전달
+
+## 계층별 데이터이름
+
+- TCP(transport layer): segment
+- IP(network layer): datagram
+- Ethernet(datalink layer): frame
