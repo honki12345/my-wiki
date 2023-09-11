@@ -623,3 +623,81 @@
 ## 글꼴계열
 
 ![Alt text](images/image-49.png)
+
+## 문자와 관련된 속성
+
+- color: 글자의 색상
+  - 기본값(rgb(0,0,0)): 검정색
+  - 값(색상): 지정가능한 색상
+- text-align: 문자의 정렬방식
+  - 기본값(left): 왼쪽 정렬
+  - 값(right, center)
+- text-decoration: 문자의 장식(선)
+  - 기본값(none)
+  - 값 (underline, line-through)
+- text-indent: 문장 첫 줄의 들여쓰기
+  - 기본값(0)
+  - 단위: px, em, rem
+
+## 배경
+
+- background-color: 요소의 배경 색상
+  - 기본값(transparent)
+  - 값(색상)
+- background-image: 요소의 배경이미지 삽입
+  - 기본값(none)
+  - 값(url("경로"))
+- background-repeat: 요소의 배경 이미지 반복
+  - 기본값(repeat): 이미지를 수직, 수평반복
+  - 값(repeat-x, repeat-y, no-repeat)
+- background-position: 요소의 배경 이미지 위치
+  - 기본값(0%, 0%)
+  - 값(방향) -e.g. background-position: top right
+  - 값(단위) -e.g. background-position: 100px 50px
+- background-size: 요소의 배경이미지 크기
+  - 기본값(auto): 이미지의 실제크기
+  - 값(단위)
+  - 값(cover): 비율을 유지, 요소의 더 **넓은** 너비에 맞춤
+  - 값(contain): 비율을 유지, 요소의 더 **짧은** 너비에 맞춤
+- background-attachment: 요소의 배경이미지 스크롤 특성
+  - 기본값(scroll): 이미지가 요소를 따라서 **같이 스크롤**
+  - 값(fixed): 이미지가 뷰포트에 고정, 스크롤 x
+
+## position 요소를 원하는 위치에 배치하기
+
+- 원칙: 요소를 배치할 시 기준을 먼저 잡고 위치를 설정한다
+  - 위치설정 속성(요소의 각 방향별 거리 지정): top, bottom, left, right, z-index
+- 요소의 위치 지정 **기준**
+- 기본값(static): 기준없음-배치를 할 수 없음
+- 값(relative): 요소 **자신**을 기준
+- 값(absolute): **위치상 부모** 요소를 기준
+- 값(fixed): **뷰포트**(브라우저)를 기준
+
+## position-relative
+
+- 요소 자신을 기준으로 배치
+  ![Alt text](images/image-50.png)
+  - 배치 전 자리는 (시각적으로) 비어있다
+  - 위 문제때문에 position-relative로 자기자신을 기준으로 배치하는 경우는 없다
+
+## position-absolute
+
+- 위치상 부모 요소를 기준으로 배치
+  - 붕 뜨면서 요소가 겹쳐진다-> 위치상 부모요소를 기준으로 배치 되었으므로 다른 요소들과 상호작용할 필요가 없어진 다
+    ![Alt text](images/image-51.png)
+    ![Alt text](images/image-52.png)
+    ![Alt text](images/image-53.png)
+- 위치상/ 구조상의 부모요소에 특정한 포지션의 값이 들어있어야한다
+
+## position-fixed
+
+- 뷰포트(브라우저)를 기준으로 배치
+- absolute와 동일하게 배치기준이 변경되어 주변 요소들과 상호작용하지 않는다
+
+## 요소쌓임순서(stack order)
+
+- 어떤 요소가 사용자와 얼마나 더 가깝게 있는지(위에 쌓이는지) 결정
+
+1. 요소에 position 속성의 값이 있는 경우 위에 쌓임(기본값 static 제외)
+2. 1번 조건이 같은 경우, z-index 속성의 숫자 값이 높을수록 위에 쌓임
+3. 1번과 2번 조건까지 같은 경우, HTML의 다음 구조일수록 위에 쌓임
