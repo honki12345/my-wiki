@@ -688,11 +688,13 @@
     ![Alt text](images/image-52.png)
     ![Alt text](images/image-53.png)
 - 위치상/ 구조상의 부모요소에 특정한 포지션의 값이 들어있어야한다
+- display 속성이 block으로 변경됨
 
 ## position-fixed
 
 - 뷰포트(브라우저)를 기준으로 배치
 - absolute와 동일하게 배치기준이 변경되어 주변 요소들과 상호작용하지 않는다
+- display 속성이 block으로 변경됨
 
 ## 요소쌓임순서(stack order)
 
@@ -701,3 +703,114 @@
 1. 요소에 position 속성의 값이 있는 경우 위에 쌓임(기본값 static 제외)
 2. 1번 조건이 같은 경우, z-index 속성의 숫자 값이 높을수록 위에 쌓임
 3. 1번과 2번 조건까지 같은 경우, HTML의 다음 구조일수록 위에 쌓임
+
+## z-index
+
+- 요소의 쌓임 정도를 지정
+- 기본값(auto): 부모 요소와 동일한 쌓임정도
+- 값(숫자): 숫자가 높을수록 위에 쌓임
+
+## 플렉스(정렬)
+
+- 1차원 레이아웃 만드는 개념
+
+## 플렉스-display
+
+- Flex Container의 화면출력(보여짐) 특성
+- 값(flex): 블록 요소 같이 Flex Container 정의
+- 값(inline-flex): 인라인 요소 같이 Flex Container 정의
+
+## flex container: flex-direction
+
+- 주 축을 설정
+- 기본값(row): x축 (좌 -> 우)
+- 값(row-reverse): x축 (우 -> 좌)
+  ![Alt text](images/image-54.png)
+
+## flex container: justify-content
+
+- 주축의 정렬 방법
+- 기본값(flext-start): flex items를 시작점으로 정렬
+- 값(flex-end): flex items를 끝점으로 정렬
+- 값(center): flex items를 가운데 정렬
+
+## flex container: align-content
+
+- **교차** 축의 **여러 줄** 정렬 방법
+- 기본값(stretch): flex items를 시작점으로 정렬
+- 값(flex-start): flex items를 시작점으로 정렬
+- 값(flex-end): flex items를 끝점으로 정렬
+- 값(center): flex items를 가운데 정렬
+  ![Alt text](images/image-55.png)
+- 조건
+  - flex items들이 두 줄 이상이여야한다
+  - flex-wrap: wrap
+  - 여백이 있어야한다
+
+## flex container: align-items
+
+- **교차** 축의 **한 줄** 정렬 방법
+- 기본값(stretch): flex items를 교차 축으로 늘림
+- 값(flex-start): flex items를 각 줄의 시작점으로 정렬
+- 값(flex-end): flex items를 각 줄의 끝점으로 정렬
+- 값(center): flex items를 각 줄의 가운데 정렬
+
+## flex items: flex-wrap
+
+- 묶음(줄바꿈) 여부
+- 기본값(nowrap): 묶음(줄바꿈) 없음 -> 한 줄로만 정렬
+- 값(wrap): 여러 줄로 묶음
+
+## flex items: order
+
+- flex item의 (정렬) 순서
+- 기본값(0): 순서 없음
+- 값(숫자): 숫자가 작을 수록 먼저
+
+## flex items: flex-grow
+
+- (남은공간에 대한) flex item의 증가 너비 비율
+- 기본값(0): 증가비율 없음
+- 값(숫자): 증가비율
+
+## flex items: flex-shrink
+
+- flex item의 감소 너비 비율
+- 기본값(1): Flex Container 너비에 따라 감소비율 적용
+- 값(숫자): 감소비율
+
+## flex items: flex-basis
+
+- flex item의 공간 배분 전 기본너비
+- 기본값(auto): 요소의 content 너비
+- 값(단위: px, em, rem)
+
+## 전환: transition
+
+- 요소의 전환(시작과 끝) 효과를 지정하는 단축속성
+- `transition: 속셩명, 지속시간, 타이밍함수, 대기시간`
+  - 개별속성: (지정)속성명(transition-property), 지속시간(transition-duration, 필수속성), 타이밍함수(transition-timing-function), 대기시간(transition-delay)
+
+## transition-property
+
+- 전환효과를 사용할 속성 이름을 지정
+- 기본값(all): 모든 속성에 적용
+- 값(속성이름): 전환 효과를 사용할 속성 이름명시
+
+## transition-duration
+
+- 전환효과의 지속시간을 지정
+
+## transition-timing-function
+
+- 전환효과의 타이밍(Easing)함수를 지정
+
+## transform
+
+- 요소의 변환효과
+- transform: 변환함수1 변환함수2 변환함수3 ...
+- transform: 원근법 이동 크기 회전 기울기
+
+## perspective
+
+- 하위 요소를 관찰하는 원근거리를 지정
