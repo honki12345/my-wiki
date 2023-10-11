@@ -2,11 +2,7 @@
 
 ## 명령형 프로그래밍 vs 선언형 프로그래밍
 
-![Alt text](images/image-56.png)
-
 ### 예시
-
-![Alt text](images/image-57.png)
 
 - 동사형태의 문제해결에 선언형프로그래밍(함수형프로그래밍)이 편리하다
 
