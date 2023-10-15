@@ -223,6 +223,8 @@ Stream<T> sorted(Comparator<? super T> comparator);
 
 ![Alt text](images/image-118.png)
 
+- map을 적용한 후 추가적인 Collector를 적용할 수 있게 해준다
+
 - ToMap
 
 ![Alt text](images/image-119.png)
@@ -260,3 +262,107 @@ Stream<T> sorted(Comparator<? super T> comparator);
 ### 장/단점
 
 ![Alt text](images/image-126.png)
+
+## 종결처리 정리
+
+![Alt text](images/image-127.png)
+
+- Stream의 다양한 종결처리들
+  - max: stream의 최대값
+  - min: stream의 최소값
+  - count: stream의 개수
+  - allMatch: 주어진 Predicate을 모든 데이터가 만족할 때 true
+  - anyMatch: 주어진 predicate를 하나라도 만족하면 true
+  - findFirst: stream 내 첫번째 데이터를 꺼낼 때
+  - findAny: 아무거나 하나 꺼낼 때 사용
+  - reduce: 주어진 함수를 사용해 데이터를 하나의 값으로 합친다
+  - forEach: 값을 리턴없이 주어진 consume을 모든 데이터에 처리할때 사용
+- Collector를 이용한 종결처리들
+  - toList:
+  - toSet:
+  - mapping: map을 적용하고 추가적인 collector를 적용할 수 있게 해준다
+  - reducing: reduce 작업을 이용해 모아준다
+  - toMap: map 형태로 모아준다
+  - groupingBy: function 결과값이 같은 것끼리 모아준다
+  - partitioningBy: predicate의 값이 true와 false로 모아준다
+
+## Scope Closure Curry
+
+- Scope(스코프 / 유효범위): 변수에 접근할 수 있는 범위
+  - 함수 안에 함수가 있을 때 내부 함수에서 외부 함수에 있는 변수에 접근이 가능하다(lexical scope)
+    그 반대는 불가능하다
+- Closure- 내부 함수가 존재하는 한 내부 함수가 사용한 외부 함수의 변수들 역시 계속 조냊한다. 이렇게 lexcial scope를 포함하는 함수를 closure라 한다
+- 이때 내부 함수가 사용한 외부 함수의 변수들은 내부 함수 선언 당시로부터 변할 수 없기 때문에 final로 선언하지 않더라도 암묵적으로 final로 취급된다
+
+```public static Supplier<String> getStringSupplier() {
+  String hello = "Hello";
+  Supplier<String> supplier = () -> {
+    String world = "World";
+    return hello + world;
+  };
+
+  return supplier;
+}
+```
+
+- curry: closure의 응용
+  - 여러 개의 매개변수를 받는 함수를 중첩된 여러 개의 함수로 쪼개어 매개변수를 한 번에 받지 않고 여러 단계에 나눠 받을 수 있게 하는 기술
+
+```BiFunction<Integer, Integer, Integer> add = (x, y) -> x + y;
+=>
+Function<Integer, Function<Integer, Integer>> add = x -> y -> x + y;
+```
+
+## Lazy Evaluation
+
+- Lambda의 계산은 그 결과값이 필요할 때가(e.g. 종결처리) 되어서야 계산된다
+- 이를 이용하여 불필요한 계산을 줄이거나 해당코드의 실행순서를 의도적으로 미룰 수 있다
+
+## Function Composition: 함수 합성
+
+![Alt text](images/image-129.png)
+![Alt text](images/image-130.png)
+
+- compose: 파라미터로 들어온 함수를 먼저 실행하고 그 다음 자신을 실행하도록 합성
+- andThen: 자신을 먼저 실행하고 그 다음 파라미터로 넘어온 함수를 실행한다
+  - 가독성 측면에서 andThen이 우수하다
+
+## 디자인패턴
+
+![Alt text](images/image-131.png)
+
+- 반복해서 등장하는 프로그래밍 문제들에 대한 해법들을 패턴화 해놓은 것
+
+![Alt text](images/image-133.png)
+
+## 디자인패턴의 종류
+
+![Alt text](images/image-132.png)
+
+## 빌더 패턴
+
+![Alt text](images/image-134.png)
+
+## 데코레이터 패턴
+
+![Alt text](images/image-135.png)
+
+## 전략패턴
+
+![Alt text](images/image-136.png)
+
+## 템플릿 메소드 패턴
+
+![Alt text](images/image-137.png)
+
+## 책임 연쇄 패턴
+
+![Alt text](images/image-138.png)
+
+## 디자인 패턴 summary
+
+- Builder pattern: 유저 인스턴스를 유연하게 만드는 방법
+- Decorator pattern: 기능을 계속 추가
+- Strategy pattern: 전략을 런타임에 갈아끼우는 방법
+- template method pattern: 유저의 생성 과정을 템플릿화시키고 유저를 어떻게 검증하고 DB에 넣을지 세부과정을 위임한다.
+- chain of responsibility pattern: step을 정의하고 step을 체인으로 정의한다
