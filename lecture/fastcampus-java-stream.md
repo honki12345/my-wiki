@@ -125,3 +125,138 @@
 - 만족하는 데이터만 걸러내는데 사용
 - Prediacte 에 true를 반환하는 데이터만 존재하는 stream 을 리턴
 - `Stream<T> filter(Prediacte<? super T> prediacate);`
+
+## Map: 데이터의 변형
+
+- 데이터를 변형하는데 사용
+- 데이터에 해당 함수가 적용된 결과물을 제공하는 stream을 리턴
+- `<R> Stream<R> map(Function<? super T, ? extends R> mapper)`
+
+## Stream의 구성요소
+
+![Alt text](images/image-112.png)
+
+- 여러 개의 중간 처리를 연결할 수 있다
+  - Filter, map, sorted, distince, flatMap
+- source: 스트림에 데이터를 공급
+- intermediate operations: 데이터를 걸러내거나 변환하는 등 처리를 해주고
+- terminal operation: 스트림의 데이터를 모아 반환해준다
+
+## Sorted: 데이터의 정렬
+
+- 데이터가 순서대로 정렬된 stream을 리턴
+- 데이터의 종류에 따라 Comparator가 필요할 수 있음
+
+```Stream<T> sorted();
+Stream<T> sorted(Comparator<? super T> comparator);
+```
+
+## Distinct: 중복제거
+
+- 중복되는 데이터가 제거된 stream을 리턴
+
+```Stream<T> distinct();
+
+```
+
+## FlatMap: 스트림의 스트림을 납작하게
+
+- Map + Flatten
+- 데이터에 함수를 적용한 후 중첩된 **stream을 연결하여 하나의 stream으로 리턴**
+
+```<R> Stream<R> flatMap(
+  Function<? super T,
+  ? extends Stream<? extends R>> mapper);
+)
+```
+
+## NPE- NullPointerException: 함정카드 같은 에러
+
+- Null 상태인 오브젝트를 레퍼런스 할 때 발생
+- Runtime error 이기 때문에 실행전까지는 발생 여부를 알기 쉽지 않음
+
+## Optional: 있을 수도 있고 없을 수도 있다
+
+- Stream의 종결처리를 제대로 이해하기 위해서는 Optional 이 필요하다
+- Null 일수도, 아닐 수도 있는 오브젝트를 담은 상자
+
+## Optional: 만드는법
+
+- of: Null 이 아닌 오브젝트를 이용해 Optional을 만들 때
+- Empty: 빈 Optional을 만들 때
+- ofNullable: null인지 아닌지 알지 못하는 오브젝트로 Optional을 만들때
+
+## Optional: 안에 있는 값을 확인하고 꺼내는 법
+
+- isPresent: 안의 오브젝트가 null인지 아닌지 체크, null이 아닐시 true
+- get: Optional 안의 값을 추출. Null이라면 에러
+- orElse: Optional이 Null이 아니라면 Optional 안의 값을, null이라면 other로 공급된 값을 리턴
+- orElseGet: Optional이 null이 아니라면 Opional 안의 값을, null이라면 supplier로 공급되는 값을 리턴
+- orElseThrow: Optional이 null이 아니라면 Optional 안의 값을, null이라면 exceptionSupplier로 공급되는 exception을 던짐
+
+## Optional: 응용을 위해 알아야 하는 것들
+
+- ifPresent: Optional이 null이 아니라면 action을 실행
+- map: Optional이 null이 아니라면 mapper를 적용
+- flatMap: mapper의 리턴값이 또 다른 Optional이라면 한 단계의 Optional이 되도록 납작하게 해줌
+
+## max, min, count
+
+![Alt text](images/image-113.png)
+
+## All Match/any Match
+
+![Alt text](images/image-114.png)
+
+## Find First / Find Any
+
+![Alt text](images/image-115.png)
+
+## Reduce
+
+- 주어진 함수를 반복 적용해 stream 안의 데이터를 하나의 값으로 합치는 작업
+
+![Alt text](images/image-116.png)
+![Alt text](images/image-117.png)
+
+## collect(): mapping
+
+![Alt text](images/image-118.png)
+
+- ToMap
+
+![Alt text](images/image-119.png)
+![Alt text](images/image-120.png)
+
+- `Function.identity()`
+
+## collect():Grouping By
+
+![Alt text](images/image-121.png)
+
+- Stream 안의 데이터에 classifier 를 적용했을 때 결과값이 같은 값끼리 List로 모아서 Map의 형태로 반환해주는 collector
+  - Key 는 classifier의 결과값, value는 그 결과값을 갖는 데이터들
+
+![Alt text](images/image-122.png)
+
+## collect(): Partitioning By
+
+![Alt text](images/image-123.png)
+
+- Grouping By와 비교하면 두 개의 그룹으로 나눌때 유용
+
+## For Each
+
+![Alt text](images/image-124.png)
+
+## Parallel Stream: stream을 병렬로
+
+![Alt text](images/image-125.png)
+
+- numbers.parallelStream(); -> 바로 parallel 로 만들 수도 있고  
+  numbers.stream().parallel(); -> 기존의 스트림을 중간에 parallel로 바꾸는 것도 가능하다
+- 여러 개의 스레드를 이용하여 stream의 처리과정을 병렬화
+
+### 장/단점
+
+![Alt text](images/image-126.png)
