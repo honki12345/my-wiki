@@ -33,6 +33,45 @@
 
 - 단 하나의 abstract method 만을 가지는 인터페이스
   - Single Abstract Method interface)
+- Supplier: 아낌없이 주는 나무
+
+  ```@FunctionalInterface
+  public interface Supplier<T> {
+    T get();
+  }
+  ```
+
+- Consumer: 먹보
+
+  ```@FunctionalInterface
+  public interface Consumer<T> {
+    void accept(T t);
+  }
+  ```
+
+- BiConsumer: 더 먹보
+
+  ```@FunctionalInterface
+  public interface BiConsumer<T, U> {
+    void accept(T t, U u);
+  }
+  ```
+
+- Predicate: 진실 혹은 거짓
+
+  ```@FunctionalInterface
+  public interface Predicate<T> {
+    boolean test(T t);
+  }
+  ```
+
+- Comparator: 비교를 위한 인터페이스
+
+  ```@FunctionalInterface
+  public interface Comparator<T> {
+    int compare(T o1, T o2);
+  }
+  ```
 
 ## Method reference
 
@@ -73,3 +112,16 @@
 
 - 클래스의 constructor 를 지정할 때
   - `ClassName::new`
+
+## 스트림
+
+- 데이터의 흐름
+- 컬렉션형태로 구성된 데이터를 람다를 이용해 **간결하고 직관적이게** 프로세스하게 해줌
+- 기존 loop 형태를 대체
+- 손쉽게 병렬처리를 할 수 있게 해준다
+
+## Filter: 거름종이 같은 필터
+
+- 만족하는 데이터만 걸러내는데 사용
+- Prediacte 에 true를 반환하는 데이터만 존재하는 stream 을 리턴
+- `Stream<T> filter(Prediacte<? super T> prediacate);`
