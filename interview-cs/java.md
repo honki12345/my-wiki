@@ -95,3 +95,54 @@
   - Mark And Sweep
     - Root Space(스택 변수, 정적 변수 등 Heap 영역 참조를 가리키는 공간)부터 그래프 순회를 통해 연결된 객체를 찾아내고, 연결이 끊어진 객체는 메모리에서 해제하는 기법입니다
     - Reference count가 0이 되면 자동으로 지워버리는 reference counting과 다르게 mark and sweep은 의도적으로 특정 순간에 gc를 실행해야 합니다
+
+## 13. GC는 언제 실행되나요? (java 8 기준)
+
+- JVM의 Heap은 Young generation, old generation으로 나뉘고, young generation은 다시 eden, servival 0, servival 1 영역으로 나뉩니다. eden 영역이 꽉 차면 minor gc가 실행되어 mark and sweep 알고리즘을 통해 참조가 되고 있는 객체만 servival 0 또는 servival 1 영역으로 옮깁니다  
+  만약 여러 번 minor gc를 실행하고도 참조된 객체가 있다면, 이 객체를 serival 영역에서 old generation으로 옮깁니다. 시간이 지나서 old generation 영역이 꽉 차면 major gc를 실행하여 mark and sweep 알고리즘을 통해 필요 없는 메모리를 비웁니다
+
+## 14. 왜 Heap 영역은 young generation과 old generation으로 나뉘나요?
+
+- 통계적으로 대부분의 객체가 수명이 짧으므로 특정 부분만 탐색함으로써 GC의 성능을 높이기 위해 나누었습니다.
+
+## 15. GC의 실행방식을 모두 설명해주세요
+
+- Serial GC
+  - Serial GC는 하나의 스레드로 GC를 실행하는 방식인데, 하나의 스레드로 GC를 실행하다보니 Stop The World 시간이 깁니다
+  - GC 실행 이후 메모리 파편화를 막는 Compaction 과정을 수행합니다
+- Parallel GC
+  - Serial GC를 멀티스레딩으로 수행합니다
+- CMS GC
+  - 대부분의 가비지 수집 작업을 애플리케이션 스레드와 동시에 수행하여, Stop The World 시간을 최소화하고 있습니다. 하지만 메모리와 CPU를 많이 사용하고, Mark And Sweep 과정 이후 메모리 파편화를 해결하는 Compaction이 기본적으로 제공되지 않는다는 단점이 있습니다
+- G1 GC
+  - 전통적인 Heap 구조와 달리, G1 GC에서는 Region이라는 논리적 단위로 Young Generation, Old Generation 등으로 쪼개져 있습니다. CMS GC보다 나은 방식으로 애플리케이션과 GC를 동시에 실행할 수 있고, 메모리 Compaction 과정까지 지원하고 있습니다.
+
+## 16. Java 8 디폴트 GC 실행방식은 어떤 것인가요?
+
+- Parallel GC 입니다
+
+## 17. Java 11 디폴트 GC 실행방식은 어떤 것인가요?
+
+- G1 GC입니다
+
+## 18. G1 GC에 대해 설명해주세요
+
+- G1 GC에서 G1은 Garbage First의 약어이며, Garbage만 존재하는 Region을 먼저 회수한다고 해서 붙여진 이름으로, 빈 공간 확보를 빠르게 수행하는 GC입니다
+
+## 19. G1 GC의 장단점을 설명해주세요
+
+- 장점
+  - 별도의 STW 없이도 여유 메모리 공간을 압축하는 기능을 제공합니다. 전체 Old Generation 혹은 Young Generation 통째로 Compaction을 할 필요 없고, 해당 Generation의 일부분 Region에 대해서만 Compaction을 하면 됩니다
+  - heap 크기가 클수록 잘 동작합니다
+  - CMS에 비해 개선된 알고리즘을 사용하고, 처리 속도가 더 빠릅니다
+  - Garbage로 가득찬 영역을 빠르게 회수하여 빈 공간을 확보하므로 GC 빈도가 줄어듭니다
+- 단점
+  - 공간 부족 상태를 조심해야합니다. (Minor GC, Major GC 수행하고 나서도 여유공간이 부족한 경우)
+    - 이때는 Full GC가 발생하는데, 이 GC는 Single Thread로 동작합니다
+    - Full GC는 heap 전반적으로 GC가 발생하는 것을 뜻합니다
+  - 작은 Heap 공간을 가지는 Application 에서는 제 성능을 발휘하지 못하고 Full GC가 발생합니다
+  - Humonogous 영역은 제대로 최적화되지 않으므로 해당 영역이 많으면 성능이 떨어집니다
+
+## 20. G1 GC의 Heap 구조를 설명해주세요
+
+- 전통적인 힙 구조는 Young, Old 영역을 명확하게 구분하였지만, G1 GC는 개념적으로 그들이 존재하나 일정 크기의 논리적 단위인 Region 으로 구분하고 있습니다. G1 GC에서는 이 외의 크기가 큰 객체를 저장하는 Humonogous 영역, 아직 사용되지 않은 공간인 Available 영역이 존재합니다
