@@ -167,3 +167,128 @@
     color red;
   }
   ```
+
+## 15. CSS3 기본단위
+
+- 키워드
+- 크기단위
+  - %(크기를 % 단위로 설정), em/rem(크기를 배수 단위), px(절대적인 크기를 단위)
+    - em: 요소의 글꼴 크기를 1em 으로 갖는다. 만약 해당 요소의 폰트 크기가 없으면 부모 요소의 글꼴 크기를 1em으로 갖는다
+    - rem: 최상위 요소(html)의 글꼴 크기를 1rem 으로 갖는다
+
+## 16. 가시 속성
+
+- 눈에 보이는 특성
+- display 속성
+  - none 값: 안보이게 만든다
+- visibility 속성: display 와는 달리 공간을 차지한다
+- opacity 속성
+
+## 17. 박스 속성
+
+- margin, border, padding, height, width 를 합쳐 박스 속성이라 한다
+- width와 height 은 내용물에만 적용된다
+- border를 기준으로 안쪽: padding, 바깥쪽: margin
+- background-color: border 안쪽에만 배경색상이 적용된다
+- box-sizing: width와 height가 콘텐츠에 한정되는지, border에 한정되는지 적용할 수 있다 (content-box 가 기본값)
+
+## 17-2. 테두리(border) 속성
+
+- border-width: 테두리의 너비(선의 두께)
+- border-style: 테두리의 스타일
+- border-color: 테두리의 색상
+- border-radius
+
+## 18. 배경속성
+
+- background-image: url("파일의경로");
+- background-size: "크기 단위", "키워드"
+- background-repeat: "키워드"
+- background-attachment: "키워드" (scroll, fixed)
+- background-position: "키워드"
+- background-color: "색상 단위"
+
+## 19. 폰트 속성
+
+- font-size: "크기단위", "키워드"
+- font-familly:
+- font-style: "키워드
+- font-weight: "키워드" (글자 두께)
+- text-align: "키워드" (가로 글자 정렬, block 형식에서만 작용)
+- line-height: "크기 단위" (글자 줄 높이, 세로 글자 정렬에 활용된다)
+- color: "색상" (글자 색상)
+- text-decoration: (e.g. a 태그에서의 밑줄 제거)
+
+## 20. 위치 속성
+
+### position 속성과 left/right/bottom/top 속성
+
+- 기본적으로 위 -> 아래, 왼쪽 -> 오른쪽으로 위치를 잡는다
+- absolute 를 사용하면 기본적인 좌표 잡는 방식을 무시하고 절대적인 좌표로 잡는다. 이때부터는 left(x좌표), top(y좌표), right, bottom 으로 위치를 잡는다
+- absolute를 사용하면 margin, padding을 무시하고 위치를 잡는다
+- absolute를 사용하고 width와 height 이 없으면 left, top, right, bottom 만으로 크기를 잡는다
+- absolute 로 지정된 태그들은 기존의 태그들과 완전히 다른 세계에서 놀게 된다(위치, 크기에 영향을 받지 않고 주지도 않는다)
+
+### 공식
+
+- (문제점) 자식들이 부모의 위치도 못 알아보고 위치를 잡음
+  - (해결방법) position을 absolute로 지정한 태그가 있으면 부모 태그의 position을 relative로 지정한다
+  - (원리) 자식태그(absolute)가 부모태그(relative)를 기준으로 위치를 잡게 된다
+- (문제점) 부모는 자식이 어디있는지 알 수 없다
+  - (해결방법) 내부에 요소를 채우던지 height 요소를 사용해서 좌표를 예측해서 감싸준다
+
+#### 공식 정리
+
+- 자식에 position: absolute를 지정했으면
+  - 부모에 relative를 준다
+  - 부모의 높이를 어떻게든 지정해서 자식을 감싸준다
+
+### z-index 속성
+
+- 클수록 앞에 위치하도록 한다
+
+### overflow
+
+- 자신의 높이를 넘는부분을 어떻게 처리할지 선택
+
+## 레이아웃 잡기
+
+### 중앙정렬 공식
+
+- 너비를 지정하고 `margin: 0 auto`
+
+### 레이아웃
+
+- 내부에서 세로로 자르는 것은 그 요소의 내부에서 자식요소로 가진다
+- 레이아웃은 기본적으로 가로로 자를 수 있는 부분을 기준으로 한다
+
+### float 속성을 사용한 수평정렬 공식
+
+- 자식에 width(합쳐서 부모의 width만큼), float 주고 부모에 overflow: hidden
+  - overflow 속성을 가지면 부모가 자식 요소 크기만큼 감싸서 영역을 가진다. 없으면 자식 영역을 모두 잃고 자신도 영역을 잃는다
+  - 즉 overflow 속성을 주는 이유는 부모가 자식의 영역을 못 알아봐서이다
+
+### float 속성과 clear 속성을 사용한 레이아웃
+
+- clear 속성을 사용해 밑의 내용물이 올라오는걸 막는다. 일종의 막 형성
+- container 가 자식을 못알아봐서 영역을 잡지 못하게 된다. 심지어 부모 관계를 없애도 무방하다
+- 방법1: float 속성들과 밑의 요소들 사이에 막(clear)을 만들기
+- 방법2: float 속성들과 부모::after에 `clear: both, content: '' display: block`
+
+### flex 레이아웃
+
+- (자식에게 너비 주고) 부모에 `display: flex`
+
+## 23. 그림자, 그레이디언트
+
+- CSS3 부터 글자나 박스에 그림자를 부여할 수 있다
+  - 글자: text-shadow, 박스: box-shadow
+
+## 25. 초기화, 웹폰트
+
+- 사용자가 웹 폰트를 다운받게 하여 웹사이트에서 폰트를 출력하게 한다
+
+## 26. 동위 선택자
+
+- `태그 + 태그`: 앞의 태그 바로 뒤의 그 태그
+- `태그 ~ 태그`: 앞의 태그 뒤의 모든 그 태그
