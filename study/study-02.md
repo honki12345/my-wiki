@@ -2,11 +2,11 @@
 
 ## 레퍼런스
 
-- 1번: <https://tecoble.techcourse.co.kr/post/2022-09-20-external-in-transaction/>
-- 2번: https://tecoble.techcourse.co.kr/post/2020-09-30-event-publish/
-- 3번: https://cheese10yun.github.io/event-transaction/
-- 4번: https://www.youtube.com/watch?v=uk5fRLUsBfk
-- 5번: https://blog.gangnamunni.com/post/transactional-outbox/
+- 1번예제: https://tecoble.techcourse.co.kr/post/2022-09-20-external-in-transaction/
+- 2번예제: https://tecoble.techcourse.co.kr/post/2020-09-30-event-publish/
+- 3번예제: https://cheese10yun.github.io/event-transaction/
+- 4번예제: https://blog.gangnamunni.com/post/transactional-outbox/
+- 부록: https://www.youtube.com/watch?v=uk5fRLUsBfk
 
 ## Real MySQL
 
