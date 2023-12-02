@@ -20,6 +20,7 @@
 - 3번: https://cheese10yun.github.io/event-transaction/
 - 4번: https://www.youtube.com/watch?v=uk5fRLUsBfk
 - 5번: https://blog.gangnamunni.com/post/transactional-outbox/
+- 6번: https://www.youtube.com/watch?v=YPbGW3Fnmbc
 
 ## 전체구조
 
@@ -142,3 +143,15 @@ https://kadensungbincho.tistory.com/125
 - 최소한번 보장
 
 ## 5번
+
+## 메시지 전달 신뢰성
+
+![Alt text](images/image-13.png)
+
+- 메시지 전송, 적재 확인
+  ![Alt text](images/image-14.png)
+
+- 분산 트랜잭션(2PC)
+- saga 패턴
+  ![Alt text](images/image-15.png)
+  - 하나의 거대한 분산 트랜잭션을 일련의 로컬트랜잭션으로 나눈다
