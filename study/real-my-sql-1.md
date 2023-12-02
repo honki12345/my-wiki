@@ -12,10 +12,9 @@
 
 ## 레퍼런스
 
-- tecoble: 트랜잭션 내에 외부 리소스 요청이 담기게 되면 어떤 문제가 발생할까?
+- 1번: tecoble: 트랜잭션 내에 외부 리소스 요청이 담기게 되면 어떤 문제가 발생할까?
   - real mysql 관점에서의 예제코드
   - <https://tecoble.techcourse.co.kr/post/2022-09-20-external-in-transaction/>
-  -
 - 2번: https://tecoble.techcourse.co.kr/post/2020-09-30-event-publish/
 - 3번: https://cheese10yun.github.io/event-transaction/
 - 4번: https://www.youtube.com/watch?v=uk5fRLUsBfk
@@ -27,10 +26,12 @@
 - real-my-sql의 대전제에 대한 의문: 정말 외부 리소스 요청은 트랜잭션 내에서 분리해야할까?
 - tecoble: real-my-sql 전제를 충실히 따르고 있는 예제
 
-## real-my-sql 내용
+## 트랜잭션과 잠금
 
-- 158 - 160p  
-  "사용자가 게시판에 게시물을 작성한 후 저장 버튼을 클릭했을 때 서버에서 처리하는 내용을 순서대로 정리한 것"
+### 5.1.2 주의사항
+
+- 158 - 160p
+- "사용자가 게시판에 게시물을 작성한 후 저장 버튼을 클릭했을 때 서버에서 처리하는 내용을 순서대로 정리한 것"
 
   ```text
   1) 처리시작
