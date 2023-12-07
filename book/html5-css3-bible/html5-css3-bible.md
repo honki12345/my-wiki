@@ -311,3 +311,9 @@
 - minimum-scale: 최소 축소 비율
 - maximum-scale: 최대 축소 비율
 - target-densitydpi: DPI 지정
+
+## 32. 트랜지션
+
+- 트랜지션: 변화를 부드럽게 만들어주는 속성
+
+## 33. 키 프레임과 애니메이션 속성
