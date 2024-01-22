@@ -1,33 +1,13 @@
 # 모던 JavaScript 듀토리얼 day03
 
 - 읽을파트: [파트 1 5.3] 문자열
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-- 평가: 유익, 비교연산자 규칙이 어지러웠는데 과제문제풀이와 함정피하기로 핵심을 말해주어서 정리가 잘 되었다
-=======
 - 평가: 유익, 중요한 내용인데 모르고 있어서 이번기회에 정리할 수 있어 좋았다
->>>>>>> Stashed changes
-=======
-- 평가: 유익, 중요한 내용인데 모르고 있어서 이번기회에 정리할 수 있어 좋았다
->>>>>>> Stashed changes
-=======
-- 평가: 유익, 중요한 내용인데 모르고 있어서 이번기회에 정리할 수 있어 좋았다
->>>>>>> Stashed changes
 
 ---
 
 ## [파트 1 5.3] 문자열
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 - 문자열 비교하기
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 - 텍스트 형식의 데이터는 길이에 상관없이 문자열 형태로 저장됩니다
 - 자바스크립트에서 문자열은 페이지 인코딩 방식과 상관없이 항상 UTF-16 형식을 따릅니다
 - 템플릿리터럴(template literal): 백틱 사이로 표현식 `${...}`을 삽입할 수 있습니다
@@ -54,10 +34,3 @@
     음수를 넘기면 문자열 끝에서부터 카운팅을 시작합니다
   - `str.substring(start [, end])`
     substring은 slice와 아주 유사하지만 start가 end보다 커도 괜찮다는 데 차이가 있습니다.
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
