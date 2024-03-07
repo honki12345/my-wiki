@@ -4,6 +4,31 @@
 - 서류통과하고 인터뷰까지 2주란 시간이 주어졌는데,
   그 시간동안 포스타입 입사라는 목표를 위해 어떻게 준비하였는지
   입사한다면 어떻게 발전할 것인지 보여드리고 싶었다
+- 인터뷰에 2주라는 시간을 앞두고 기술면접, 이력서, 포트폴리오에 관한 예상질문을 정리해보고
+  또한 부족한 역량에 대해서는 어떻게 공부해나갈지 계획을 세워보는 시간을 가졌습니다.
+
+## CS 기술면접 준비
+
+- CS 기술면접을 준비하고자 면접 예상 질문리스트와 답변을 찾고 타이핑으로 정리해가며 공부하였어요.
+  - 자바: <https://github.com/honki12345/my-wiki/blob/main/interview/java2.md>
+  - 데이터베이스: <https://github.com/honki12345/my-wiki/blob/main/interview/database.md>
+  - 알고리즘: <https://github.com/honki12345/my-wiki/blob/main/interview/algorithm.md>
+  - 백엔드: <https://github.com/honki12345/my-wiki/blob/main/interview/backend.md>
+  - 자료구조: <https://github.com/honki12345/my-wiki/blob/main/interview/data-structure.md>
+  - 운영체제: <https://github.com/honki12345/my-wiki/blob/main/interview/operating-system.md>
+  - 프로그래밍: <https://github.com/honki12345/my-wiki/blob/main/interview/programming.md>
+
+## 포트폴리오 면접 준비
+
+- 제 프로젝트에서 활용한 Elasticsearch(AWS의 OpenSearch)와 동시성이슈를 포스타입에서도 활용하고자 다시 공부해봤습니다.
+- Elasticsearch
+  - 인프런에 Elasticsearch 에 대한 핵심을 정리한 강의가 있어 듣고 정리하고 있어요.
+  - 강의: <https://www.inflearn.com/course/elasticsearch-essential/dashboard>
+  - 정리: <https://github.com/honki12345/my-wiki/blob/main/lecture/es-essential.md>
+- 동시성이슈
+  - 인프런에 동시성 이슈를 해결하는 방법을 정리한 강의가 있어 듣고 정리하였어요.
+  - 강의: https://www.inflearn.com/course/%EB%8F%99%EC%8B%9C%EC%84%B1%EC%9D%B4%EC%8A%88-%EC%9E%AC%EA%B3%A0%EC%8B%9C%EC%8A%A4%ED%85%9C/dashboard
+  - 정리:
 
 ## 준비과정
 
@@ -40,7 +65,18 @@
 - 포스타입은 오늘의 포스타입에서 1주일 후의 포스타입, 한달 후의 포스타입, 일년 후의 포스타입을 예측할 수 없다.
   원팀으로 목표를 향해 로켓성장하고 있는걸 확인했다. 강한 임팩트를 불러올 이벤트와 기능들이 도입되는걸 느꼈다.
   여기에서라면 나도 포스타입에 올라타 성장할 수 있을꺼란 확신이 들었다.
+  - 포스타입은
 - 누구도 가지 않은, 그리고 쉽지 않은 목표를 꿈꾸며 모두 몰입하는걸 느꼈다. 자율과 책임으로 동료들에게 강한 동기부여를 일으키고 있다. 목표를 잘게 나누어 빠르게 실행하고 결과 데이터에 기반해 의사를 결정하는 전략도 확인했다. 글만 읽는걸로도 나도 꿈을 꾸게 만들었다. 포스타입과 함께 나도 폭풍성장하고 싶다
+- 포스타입은 매달 몇백만명의 사용자가 이용하고 있고 재정으로도 안정된 회사로 알고 있다. 하지만 여기에 안주하지 않고 폭팔적인 성장을 추구하는 것이 좋았다. 나도 포스타입과 함께 성장하는 개발자가 되고 싶어 지원하였습니다.
+
+## 작은성공
+
+- 저는 제가 속해있는 조직부터 제가 사용하는 프로그래밍 언어, 프레임워크에 기여를 하고싶은 소망이 있었어요.  
+  그래서 처음부터 엄청난걸 꿈꾸기보다는 작은것이라도 용기내서 제보하고 얘기나누는것부터 시작하고 있어요.  
+  최근에는 '모던 리액트 deep dive' 책으로 스터디를 진행하였는데요. 책에 오타가 조금 있어 여러 차례 제보를 했어요.  
+  그랬더니 저자님께서 고마움의 표시로 수정된 2쇄를 선물 해주셨어요 (<https://github.com/wikibook/react-deep-dive-example/issues/7>)  
+  그리고 이메일로 저자님께서 감사의 표시와 함께 다음과 같이 말해주셨는데 누군가에게 같이 일하고 싶은 사람이 되었다는 행복감을 느낄 수 있었어요.
+  > 앞으로 혹시 같이 일할 수 있는 기회도 기대해봅니다 :D
 
 ## no-title
 
