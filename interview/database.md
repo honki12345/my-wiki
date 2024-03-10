@@ -161,14 +161,14 @@
 ## inner join과 outer join 의 차이를 설명해주세요
 
 - inner join 은 서로 연관된 내용만 검색하는 조인방법입니다
-  A와 B에 대해 수행하는 것은, A와 B의 교집합을 말합니다.
+  두 테이블을 조인할 때, 두 테이블에 모두 지정한 열의 데이터가 있어야한다
 - outer join 은 한 쪽에는 데이터가 있고 한 쪽에는 데이터가 없는 경우, 데이터가 있는 쪽의 내용을 전부 출력하는 방법입니다
-  A와 B에 대해 수행하는 것은, A와 B의 합집합을 말합니다
+  두 테이플을 조인할 때, 1개의 테이블에만 데이터가 있어도 결과가 나온다
   outer join에는 LEFT OUTER JOIN, RIGHT OUTER JOIN, FULL OUTER JOIN이 있습니다
 
 ## group by 의 역할에 대해 설명해주세요
 
-- GROUP BY는 GROUP BY 명령어를 통해 특정 칼럼을 기준으로 연산한 결과를 집계 키로 정의하여 그룹을 짓는 역할을 합니다
+- 데이터를 그룹으로 묶어주는 기능을 한다. 주로 집계함수와 함께 사용된다
   집합 연산자는 COUNT, SUM, AVG, MAX, MIN 등이 있고, DISTINCT 와 같이 중복 데이터를 제거하는 특징이 있습니다
 
 ## DELETE, TRUNCATE, DROP의 차이를 설명해주세요

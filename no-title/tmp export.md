@@ -53,28 +53,27 @@
 
 - 제 프로젝트에서 활용한 Elasticsearch(AWS의 OpenSearch)와 동시성이슈를 포스타입에서도 활용하고자 다시 공부해봤습니다.
 - Elasticsearch
-  - 인프런에 Elasticsearch 에 대한 핵심을 정리한 강의가 있어 듣고 정리하고 있어요.
-  - 강의: <https://www.inflearn.com/course/elasticsearch-essential/dashboard>
-  - 정리: <https://github.com/honki12345/my-wiki/blob/main/lecture/es-essential.md>
-  - 실제적으로 Elasticsearch 를 운영하기 위해서는 이론만으로는 부족하다고 생각하여 다음의 강의도 수강할 예정이에요.
+  - (진행중) 인프런에 Elasticsearch 에 대한 핵심을 정리한 강의가 있어 듣고 정리하고 있어요.
+    - 강의: <https://www.inflearn.com/course/elasticsearch-essential/dashboard>
+    - 정리: <https://github.com/honki12345/my-wiki/blob/main/lecture/es-essential.md>
+  - (예정) 실제적으로 Elasticsearch 를 운영하기 위해서는 이론만으로는 부족하다고 생각하여 다음의 강의도 수강할 예정이에요.
     - 인프런의 OpenSearch 강의: <https://www.inflearn.com/course/%ED%95%98%EB%A3%A8%EB%A7%8C%EC%97%90-%EB%B0%B0%EC%9A%B0%EB%8A%94-aws-opensearch#curriculum>
     - 유투브 Elasticsearch 실습 강의: <https://youtube.com/playlist?list=PLhFRZgJc2afp0gaUnQf68kJHPXLG16YCf&feature=shared>
 - 동시성이슈
-  - 인프런에 동시성 이슈를 해결하는 방법을 정리한 강의가 있어 듣고 정리하였어요.
-  - 강의: <https://www.inflearn.com/course/%EB%8F%99%EC%8B%9C%EC%84%B1%EC%9D%B4%EC%8A%88-%EC%9E%AC%EA%B3%A0%EC%8B%9C%EC%8A%A4%ED%85%9C/dashboard>
-  - 정리: <https://github.com/honki12345/my-wiki/blob/main/lecture/how-to-solve-concurrency-issues.md>
+  - (완료) 인프런에 동시성 이슈를 해결하는 방법을 정리한 강의가 있어 듣고 정리하였어요.
+    - 강의: <https://www.inflearn.com/course/%EB%8F%99%EC%8B%9C%EC%84%B1%EC%9D%B4%EC%8A%88-%EC%9E%AC%EA%B3%A0%EC%8B%9C%EC%8A%A4%ED%85%9C/dashboard>
+    - 정리: <https://github.com/honki12345/my-wiki/blob/main/lecture/how-to-solve-concurrency-issues.md>
 
 ## 심화준비 - 기술역량 늘리기
 
 - 우대사항 중에 저에게 부족한 부분을 어떻게 채워나갈지 고민해봤어요.
 - AWS 기반의 인프라 운영 경험이 있으신 분
-  - 책을 통해 AWS와 관련된 기본 개념과 구조를 공부하고 있어요
+  - (진행중) 책을 통해 AWS와 관련된 기본 개념과 구조를 공부하고 있어요
     - <https://www.yes24.com/Product/Goods/117291443>
-    - 정리: (예정)
-  - 실제적인 운영에 대한 강의도 들어볼 생각이에요
+  - (예정) 실제적인 AWS 운영에 대한 강의도 들어볼 생각이에요
     - 강의: <https://www.inflearn.com/course/%EC%8B%A4%EB%A6%AC%EC%BD%98%EB%B0%B8%EB%A6%AC-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4-%EC%95%84%EB%A7%88%EC%A1%B4-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4-core#curriculum>
 - 대규모 트래픽 환경에서 발생할 수 있는 다양한 이슈를 경험하신 분
   창업 경험이 있거나 초기 스타트업에서 MVP 형태의 제품을 개발해 본 경험이 있으신 분
-  - 초기 스타트업에서의 제품개발, 대규모 트래픽 환경에서의 이슈경험이 부족하여 다음의 강의를 통해 공부할 계획이에요
+  - (예정) 초기 스타트업에서의 제품개발, 대규모 트래픽 환경에서의 이슈경험이 부족하여 다음의 강의를 통해 공부할 계획이에요
     - 초기 스타트업부터 확장되가면서 어떤 운영이슈가 있는지 체험해보는 강의에요
       <https://fastcampus.co.kr/dev_online_upbedata>
