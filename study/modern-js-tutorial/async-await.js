@@ -8,9 +8,12 @@ async function loadJson(url) {
 }
 
 async function wait() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  const result = await new Promise((resolve) =>
+    setTimeout(() => resolve(5), 5000)
+  );
+  console.log(result);
 
-  return 10;
+  return result;
 }
 
 const response = wait().then((resolve) => console.log(resolve));
